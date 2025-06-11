@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  backend-python-downloader:
+    build: ../backend-python-downloader
+    container_name: backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./downloads:/app/downloads
+
+  frontend-nextjs:
+    build: ../frontend-nextjs
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend-python-downloader
